@@ -1,12 +1,20 @@
-import 'package:flutter_base_project/constants/common_libs.dart';
+import 'dart:ui';
 
-void showAnimatedSnackBar(
-    {required BuildContext context, required String message}) {
-  final OverlayState overlay = Overlay.of(context);
+import '../constants/common_libs.dart';
+
+void showAnimatedSnackBar({
+  required BuildContext context,
+  required String message,
+}) {
+  final OverlayState overlay = Overlay.of(context)!;
   final _controller = AnimationController(
     vsync: overlay,
     duration: const Duration(milliseconds: 500),
   );
+
+  final ThemeData theme = Theme.of(context);
+  final snackBarColor = theme.snackBarTheme.backgroundColor;
+  final snackBarTextColor = theme.snackBarTheme.actionTextColor;
 
   final overlayEntry = OverlayEntry(
     builder: (BuildContext context) => Positioned(
@@ -21,13 +29,15 @@ void showAnimatedSnackBar(
             child: Material(
               elevation: 8,
               borderRadius: BorderRadius.circular(8),
-              color: Colors.blue, // Set your desired background color
+              color: snackBarColor,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    vertical: 32.0, horizontal: 12.0),
+                  vertical: 32.0,
+                  horizontal: 12.0,
+                ),
                 child: Text(
                   message,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: snackBarTextColor),
                 ),
               ),
             ),
