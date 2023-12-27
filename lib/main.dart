@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/router/router.dart';
+import 'package:flutter_base_project/services/connectivity_checker.dart';
+import 'package:flutter_base_project/utils/keys.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+// Now, you can initialize the ConnectivityService
+  final ConnectivityService connectivityService =
+      ConnectivityService(GlobalVariableKeys.scaffoldMessengerState);
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      scaffoldMessengerKey: GlobalVariableKeys.scaffoldMessengerState,
       title: 'Cupertino App with GoRouter',
       routerConfig: goRouter,
       theme: ThemeData.light().copyWith(
