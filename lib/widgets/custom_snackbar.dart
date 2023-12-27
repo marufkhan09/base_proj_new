@@ -1,12 +1,10 @@
-import 'dart:ui';
-
 import '../constants/common_libs.dart';
 
 void showAnimatedSnackBar({
   required BuildContext context,
   required String message,
 }) {
-  final OverlayState overlay = Overlay.of(context)!;
+  final OverlayState overlay = Overlay.of(context);
   final _controller = AnimationController(
     vsync: overlay,
     duration: const Duration(milliseconds: 500),
