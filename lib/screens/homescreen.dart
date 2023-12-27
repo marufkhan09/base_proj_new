@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ); */
           showAnimatedSnackBar(context: context, message: "SHOW MESSAGE");
         },
-        child: Text("GO"),
+        child:const Text("1ST DETAIL"),
       )),
     );
   }

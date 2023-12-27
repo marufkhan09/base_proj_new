@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/router/routes.dart';
+import 'package:flutter_base_project/screens/fourthscreen.dart';
 import 'package:flutter_base_project/screens/homescreen.dart';
 import 'package:flutter_base_project/screens/settingscreen.dart';
+import 'package:flutter_base_project/screens/thirdscreen.dart';
 import 'package:flutter_base_project/widgets/custom_scaffold.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,12 +52,48 @@ final GoRouter goRouter = GoRouter(
             );
           },
         ),
+        GoRoute(
+          path: Routes.third,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const ThirdScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                // Change the opacity of the screen using a Curve based on the the animation's
+                // value
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: Routes.fourth,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const FourthScreen(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                // Change the opacity of the screen using a Curve based on the the animation's
+                // value
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
       ],
     ),
   ],
   errorPageBuilder: (context, state) => MaterialPage(
     key: state.pageKey,
-    child: Scaffold(
+    child: const Scaffold(
       body: Center(
         child: Text('Error: Page not found!'),
       ),

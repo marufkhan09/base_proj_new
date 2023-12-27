@@ -3,7 +3,6 @@ import 'package:flutter_base_project/router/router.dart';
 import 'package:flutter_base_project/services/connectivity_checker.dart';
 import 'package:flutter_base_project/utils/keys.dart';
 import 'package:flutter_base_project/utils/theme.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());

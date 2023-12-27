@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base_project/router/routes.dart';
 import 'package:go_router/go_router.dart';
 
-class SettingScreen extends StatefulWidget {
-  const SettingScreen({super.key});
+class FourthScreen extends StatefulWidget {
+  const FourthScreen({super.key});
 
   @override
-  State<SettingScreen> createState() => _SettingScreenState();
+  State<FourthScreen> createState() => _FourthScreenState();
 }
 
-class _SettingScreenState extends State<SettingScreen> {
+class _FourthScreenState extends State<FourthScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.orange,
+      color: Colors.grey,
       child: Center(
           child: ElevatedButton(
         onPressed: () {
-          context.go(Routes.home);
+          context.go(Routes.settings);
         },
-        child:const Text("2ND DETAIL"),
+        child:const Text("4TH DETAIL"),
       )),
     );
   }
