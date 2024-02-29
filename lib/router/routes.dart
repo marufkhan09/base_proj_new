@@ -3,4 +3,5 @@ class Routes {
   static const String settings = '/settings';
   static const String third = '/third';
   static const String fourth = '/fourth';
+  static const String firstDetail = 'firstDetail';
 }

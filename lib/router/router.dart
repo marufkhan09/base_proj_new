@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/router/routes.dart';
+import 'package:flutter_base_project/screens/first_detail.dart';
 import 'package:flutter_base_project/screens/fourthscreen.dart';
 import 'package:flutter_base_project/screens/homescreen.dart';
 import 'package:flutter_base_project/screens/settingscreen.dart';
@@ -18,6 +19,29 @@ final GoRouter goRouter = GoRouter(
       routes: [
         GoRoute(
           path: Routes.home,
+          name: Routes.home,
+          routes: [
+            GoRoute(
+              path: Routes.firstDetail,
+              name: Routes.firstDetail,
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const FirstDetailScreen(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    // Change the opacity of the screen using a Curve based on the the animation's
+                    // value
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                );
+              },
+              
+            ),
+          ],
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
@@ -36,6 +60,7 @@ final GoRouter goRouter = GoRouter(
         ),
         GoRoute(
           path: Routes.settings,
+          name: Routes.settings,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
@@ -54,6 +79,7 @@ final GoRouter goRouter = GoRouter(
         ),
         GoRoute(
           path: Routes.third,
+          name: Routes.third,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
@@ -72,6 +98,7 @@ final GoRouter goRouter = GoRouter(
         ),
         GoRoute(
           path: Routes.fourth,
+          name: Routes.fourth,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,

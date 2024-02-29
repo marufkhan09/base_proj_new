@@ -1,7 +1,6 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_project/constants/common_libs.dart';
 import 'package:flutter_base_project/router/routes.dart';
-import 'package:go_router/go_router.dart';
 
 class MyScaffold extends StatefulWidget {
   final Widget child;
@@ -14,20 +13,30 @@ class MyScaffold extends StatefulWidget {
 
 class _MyScaffoldState extends State<MyScaffold> {
   int _currentIndex = 0;
+
+  Widget _buildBackButton(BuildContext context) {
+    return true
+        ? IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              // GoRouter.of(context).goBack();
+            },
+          )
+        : const SizedBox.shrink();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('App Title'),
+        leading: _buildBackButton(context),
       ),
       body: widget.child,
-      bottomNavigationBar: BottomNavyBar(
+      bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
-        showElevation: true,
-        itemCornerRadius: 24,
-        curve: Curves.linearToEaseOut,
-        animationDuration: const Duration(milliseconds: 1500),
-        onItemSelected: (index) {
+        animationDuration: const Duration(milliseconds: 3000),
+        onDestinationSelected: (index) {
           setState(() => _currentIndex = index);
           switch (index) {
             case 0:
@@ -47,32 +56,26 @@ class _MyScaffoldState extends State<MyScaffold> {
               break;
           }
         },
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: const Icon(Icons.apps),
-            title: const Text('Home'),
-            activeColor: Theme.of(context).colorScheme.primary,
-            textAlign: TextAlign.center,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
           ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.people),
-            title: const Text('Users'),
-            activeColor: Theme.of(context).colorScheme.primary,
-            textAlign: TextAlign.center,
+          NavigationDestination(
+            icon: Badge(child: Icon(Icons.notifications_sharp)),
+            label: 'Settings',
           ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.message),
-            title: const Text(
-              'Messages test for mes teset test test ',
+          NavigationDestination(
+            icon: Badge(
+              label: Text('2'),
+              child: Icon(Icons.messenger_sharp),
             ),
-            activeColor: Theme.of(context).colorScheme.primary,
-            textAlign: TextAlign.center,
+            label: 'Third',
           ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            activeColor: Theme.of(context).colorScheme.primary,
-            textAlign: TextAlign.center,
+          NavigationDestination(
+            icon: Badge(child: Icon(Icons.notifications_sharp)),
+            label: 'Fourth',
           ),
         ],
       ),
